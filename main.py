@@ -1,7 +1,11 @@
 import random
 
 import pygame
+
 from pygame.constants import QUIT, K_DOWN, K_UP, K_RIGHT, K_LEFT
+
+from pygame.constants import QUIT
+
 import sys
 
 
@@ -54,6 +58,7 @@ enemies = []
 bonuses = []
 
 while True: 
+
     FPS.tick(920)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -63,10 +68,17 @@ while True:
         if event.type == CREATE_BONUS:
             bonuses.append(create_bonus())
            
+
+    FPS.tick(620)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            sys.exit()
+
         
     main_display.fill(COLOR_BLACK)
 
     keys = pygame.key.get_pressed()
+
 
     if keys[K_DOWN] and player_rect.bottom < HEIGHT:
         player_rect = player_rect.move(player_move_down)
@@ -90,6 +102,17 @@ while True:
         main_display.blit(bonus[0], bonus[1])
     # enemy_rect = enemy_rect.move(enemy_move)
         
+
+    if player_rect.right >= WIDTH:
+        player_speed = [-1, -1]
+
+    if player_rect.top <= 0:
+        player_speed = [-1, 1]
+
+    if player_rect.left <= 0:
+        player_speed = [1, 1]
+    
+
     main_display.blit(player, player_rect)
 
     # main_display.blit(enemy, enemy_rect)
