@@ -101,8 +101,7 @@ while True:
         bonus[1] = bonus[1].move(bonus[2])
         main_display.blit(bonus[0], bonus[1])
     # enemy_rect = enemy_rect.move(enemy_move)
-        
-    
+         
 
     main_display.blit(player, player_rect)
 
