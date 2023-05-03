@@ -64,9 +64,9 @@ while True:
             bonuses.append(create_bonus())
         
     main_display.fill(COLOR_BLACK)
+    
 
     keys = pygame.key.get_pressed()
-
 
     if keys[K_DOWN] and player_rect.bottom < HEIGHT:
         player_rect = player_rect.move(player_move_down)
