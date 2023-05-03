@@ -1,11 +1,6 @@
 import random
-
 import pygame
-
 from pygame.constants import QUIT, K_DOWN, K_UP, K_RIGHT, K_LEFT
-
-from pygame.constants import QUIT
-
 import sys
 
 
@@ -45,7 +40,7 @@ def create_bonus():
     bonus = pygame.Surface(bonus_size)
     bonus.fill(COLOR_BONUS)
     bonus_rect = pygame.Rect(random.randint(0, WIDTH), 0, *bonus_size)
-    bonus_move = [0, random.randint(1, 3)]
+    bonus_move = [0, random.randint(1, 2)]
     return [bonus, bonus_rect, bonus_move]
 
 CREATE_ENEMY = pygame.USEREVENT + 1
@@ -67,13 +62,6 @@ while True:
             enemies.append(create_enemy())
         if event.type == CREATE_BONUS:
             bonuses.append(create_bonus())
-           
-
-    FPS.tick(620)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            sys.exit()
-
         
     main_display.fill(COLOR_BLACK)
 
@@ -100,13 +88,12 @@ while True:
     for bonus in bonuses:
         bonus[1] = bonus[1].move(bonus[2])
         main_display.blit(bonus[0], bonus[1])
-    # enemy_rect = enemy_rect.move(enemy_move)
-         
+ 
 
     main_display.blit(player, player_rect)
 
-    # main_display.blit(enemy, enemy_rect)
-    print(len(enemies))
+    # print(len(enemies))
+    print(len(bonuses))
 
     pygame.display.flip()
 
@@ -115,5 +102,5 @@ while True:
             enemies.pop(enemies.index(enemy))
 
     for bonus in bonuses:
-        if bonus[1].bottom < 0:
+        if bonus[1].bottom > HEIGHT:
             bonuses.pop(bonuses.index(bonus))
