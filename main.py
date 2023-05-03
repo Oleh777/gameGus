@@ -102,15 +102,6 @@ while True:
         main_display.blit(bonus[0], bonus[1])
     # enemy_rect = enemy_rect.move(enemy_move)
         
-
-    if player_rect.right >= WIDTH:
-        player_speed = [-1, -1]
-
-    if player_rect.top <= 0:
-        player_speed = [-1, 1]
-
-    if player_rect.left <= 0:
-        player_speed = [1, 1]
     
 
     main_display.blit(player, player_rect)
